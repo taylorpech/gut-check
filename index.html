@@ -190,7 +190,7 @@
 </head>
 <body>
   <h1>Gut Check</h1>
-  <div class="subtitle">read it before you send it</div>
+  <div class="subtitle">before you press send</div>
 
   <label class="section" for="draft">what are you about to send?</label>
   <textarea id="draft" placeholder="paste it here. whole thing. don't clean it up."></textarea>
@@ -211,10 +211,10 @@
     <button class="pill" data-value="Not sure">Not sure</button>
   </div>
 
-  <button class="go" id="go-btn">read it to me</button>
+  <button class="go" id="go-btn">cook it</button>
 
   <div class="loading" id="loading"><span class="dots">thinking</span></div>
-  <div class="error" id="error">couldn't reach the brain, try again</div>
+  <div class="error" id="error">couldn't cook that, try again</div>
 
   <div class="crisis" id="crisis">
     <strong>hey — pause on the text.</strong>
@@ -409,7 +409,7 @@ async function readIt() {
     output.classList.add('show');
   } catch (err) {
     loading.classList.remove('show');
-    errorEl.textContent = "couldn't reach the brain, try again";
+    errorEl.textContent = "couldn't cook that, try again";
     errorEl.classList.add('show');
   } finally {
     goBtn.disabled = false;
