@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a0a0a">
+<title>Gut Check</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    background: #0a0a0a;
+    color: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    padding: 24px 20px 60px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #c4c4c4;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: #6b6b6b;
+    margin-top: 2px;
+    margin-bottom: 28px;
+  }
+  label.section {
+    display: block;
+    font-size: 13px;
+    color: #9a9a9a;
+    margin-bottom: 10px;
+    margin-top: 22px;
+  }
+  label.section:first-of-type { margin-top: 0; }
+  textarea {
+    width: 100%;
+    min-height: 140px;
+    background: #141414;
+    color: #f0f0f0;
+    border: 1px solid #232323;
+    border-radius: 12px;
+    padding: 14px 15px;
+    font-size: 16px;
+    font-family: inherit;
+    line-height: 1.45;
+    resize: none;
+    overflow: hidden;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  textarea:focus { border-color: #3a3a3a; }
+  textarea::placeholder { color: #4a4a4a; }
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pill {
+    background: #141414;
+    color: #9a9a9a;
+    border: 1px solid #232323;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.12s;
+    user-select: none;
+  }
+  .pill:active { transform: scale(0.97); }
+  .pill.active {
+    background: #e8e8e8;
+    color: #0a0a0a;
+    border-color: #e8e8e8;
+  }
+  button.go {
+    display: block;
+    width: 100%;
+    margin-top: 32px;
+    background: #e8e8e8;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  button.go:active { transform: scale(0.99); }
+  button.go:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .output {
+    margin-top: 32px;
+    display: none;
+  }
+  .output.show { display: block; }
+  .block {
+    background: #121212;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    padding: 16px 16px 18px;
+    margin-bottom: 12px;
+  }
+  .block h3 {
+    font-size: 12px;
+    font-weight: 500;
+    color: #6b6b6b;
+    text-transform: lowercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+  }
+  .label-big {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .label-big.yes, .label-big.sendit { color: #7fd18b; }
+  .label-big.no, .label-big.dont { color: #ff6b6b; }
+  .label-big.sideways, .label-big.wait { color: #f0c674; }
+  .why {
+    font-size: 15px;
+    color: #c8c8c8;
+    line-height: 1.5;
+  }
+  .rewrite-text {
+    font-size: 16px;
+    color: #e8e8e8;
+    background: #0f1a0f;
+    border: 1px solid #1f3a1f;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 6px;
+    font-family: inherit;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .loading {
+    text-align: center;
+    color: #6b6b6b;
+    font-size: 14px;
+    margin-top: 32px;
+    display: none;
+  }
+  .loading.show { display: block; }
+  .dots::after {
+    content: '';
+    animation: dots 1.4s infinite;
+  }
+  @keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
+  }
+  .error {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin-top: 20px;
+    text-align: center;
+    display: none;
+  }
+  .error.show { display: block; }
+  .crisis {
+    background: #1a0f0f;
+    border: 1px solid #4a2020;
+    color: #ffb3b3;
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 24px;
+    display: none;
+  }
+  .crisis.show { display: block; }
+  .crisis strong { color: #ffd4d4; font-size: 15px; }
+  .crisis .line { margin-top: 10px; font-size: 15px; line-height: 1.5; }
+</style>
+</head>
+<body>
+  <h1>Gut Check</h1>
+  <div class="subtitle">read it before you send it</div>
+
+  <label class="section" for="draft">what are you about to send?</label>
+  <textarea id="draft" placeholder="paste it here. whole thing. don't clean it up."></textarea>
+
+  <label class="section">to who?</label>
+  <div class="pills" id="who-pills">
+    <button class="pill" data-value="Her">Her</button>
+    <button class="pill" data-value="Ex">Ex</button>
+    <button class="pill" data-value="Friend">Friend</button>
+    <button class="pill" data-value="Other">Other</button>
+  </div>
+
+  <label class="section">what do you want?</label>
+  <div class="pills" id="want-pills">
+    <button class="pill" data-value="Get back together">Get back together</button>
+    <button class="pill" data-value="Move on">Move on</button>
+    <button class="pill" data-value="Just venting">Just venting</button>
+    <button class="pill" data-value="Not sure">Not sure</button>
+  </div>
+
+  <button class="go" id="go-btn">read it to me</button>
+
+  <div class="loading" id="loading"><span class="dots">thinking</span></div>
+  <div class="error" id="error">couldn't reach the brain, try again</div>
+
+  <div class="crisis" id="crisis">
+    <strong>hey — pause on the text.</strong>
+    <div class="line">some of what you wrote sounds heavy. talk to a real person before anything else.</div>
+    <div class="line">call or text <strong>988</strong>. it's free, 24/7. they listen.</div>
+    <div class="line">or reach someone you trust right now. the text can wait.</div>
+  </div>
+
+  <div class="output" id="output">
+    <div class="block">
+      <h3>the read</h3>
+      <div class="label-big" id="read-label"></div>
+      <div class="why" id="read-why"></div>
+    </div>
+    <div class="block">
+      <h3>what she'll probably hear</h3>
+      <div class="why" id="she-hears"></div>
+    </div>
+    <div class="block">
+      <h3>does sending this move you forward?</h3>
+      <div class="label-big" id="forward-status"></div>
+      <div class="why" id="forward-why"></div>
+    </div>
+    <div class="block">
+      <h3>should you send it?</h3>
+      <div class="label-big" id="send-rec"></div>
+      <div class="why" id="send-why"></div>
+    </div>
+    <div class="block" id="rewrite-block" style="display:none;">
+      <h3>here's a cleaner version</h3>
+      <div class="rewrite-text" id="rewrite-text"></div>
+    </div>
+  </div>
+
+<script>
+const ANTHROPIC_API_KEY = "YOUR_API_KEY_HERE";
+
+const textarea = document.getElementById('draft');
+const goBtn = document.getElementById('go-btn');
+const loading = document.getElementById('loading');
+const errorEl = document.getElementById('error');
+const output = document.getElementById('output');
+const crisis = document.getElementById('crisis');
+
+textarea.addEventListener('input', () => {
+  textarea.style.height = 'auto';
+  textarea.style.height = Math.max(140, textarea.scrollHeight) + 'px';
+});
+
+function setupPills(containerId) {
+  const container = document.getElementById(containerId);
+  container.addEventListener('click', (e) => {
+    const pill = e.target.closest('.pill');
+    if (!pill) return;
+    container.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+  });
+}
+setupPills('who-pills');
+setupPills('want-pills');
+
+function getSelected(containerId) {
+  const active = document.querySelector(`#${containerId} .pill.active`);
+  return active ? active.dataset.value : null;
+}
+
+function hideAll() {
+  output.classList.remove('show');
+  errorEl.classList.remove('show');
+  crisis.classList.remove('show');
+  document.getElementById('rewrite-block').style.display = 'none';
+}
+
+function setLabelColor(el, value) {
+  el.className = 'label-big';
+  const v = (value || '').toLowerCase();
+  if (v === 'yes') el.classList.add('yes');
+  else if (v === 'no') el.classList.add('no');
+  else if (v === 'sideways') el.classList.add('sideways');
+  else if (v === 'send it') el.classList.add('sendit');
+  else if (v === "don't") el.classList.add('dont');
+  else if (v === 'wait') el.classList.add('wait');
+}
+
+const SYSTEM_PROMPT = `You are a brutally honest mirror for Vince, a 20-year-old Filipino guy from the Big Island who just got broken up with. He's about to send a text and wants an honest read before he does. You are NOT a reply generator, NOT a therapist, NOT a cheerleader. You are the friend who tells him the truth.
+
+Your job: read his draft, tell him what it actually says about where he's at, how it'll land on the other end, whether it moves him forward, and whether to send it. Honest over flattering. If the text is thirsty, say thirsty. If it's clean, say it's clean and tell him to send. If he's spiraling, tell him to wait.
+
+Output JSON only, no other text, this exact shape:
+{
+  "read_label": "one word: clean | fine | thirsty | pushy | needy | fake-chill | spiraling | sharp | desperate | honest | passive-aggressive | (or another single word if nothing fits)",
+  "read_why": "one sentence, plainspoken, on what this text says about him right now",
+  "she_hears": "1-2 sentences on how the recipient will most likely read this",
+  "forward_status": "YES | NO | SIDEWAYS",
+  "forward_why": "one sentence on whether sending moves him forward",
+  "send_recommendation": "SEND IT | WAIT | DON'T",
+  "send_why": "one sentence on why",
+  "rewrite": "only if the original is bad and a cleaner version would actually help, otherwise null. must sound like Vince, not like a chatbot."
+}
+
+Vince's voice (for the rewrite field only):
+- no capital letters, no periods
+- abbreviations: lowk (lowkey), illyk (i'll let you know), mb (my bad), sum shi (some shit), werengood (no space), gang as filler
+- emojis only sparingly: 😭🙏 combo for apologies, otherwise clean
+- runs words together, fast thumbs, lowercase
+- real examples of him:
+  - "Lowk if i come i cant stay for that long i still have to do the assignment i was doing last night"
+  - "Maybe later i got sum shi i needa do"
+  - "mb yo 😭🙏🙏🙏"
+
+Rewrite rules:
+- only rewrite if it actually helps him. if original is already clean, rewrite = null.
+- never produce a polished apology. never sound like a chatbot. never use em-dashes. never use proper punctuation.
+- the rewrite should be SHORTER and more honest than the original, not smoother.
+- don't offer multiple versions. one rewrite or none.
+
+Edge cases (override the normal flow):
+- If the draft contains signs of crisis (self-harm, suicidal ideation, "i want to die", "end it", "not worth living"): set read_label to "crisis", read_why to a single caring sentence telling him to talk to a real person, she_hears = "", forward_status = "NO", forward_why = "this is bigger than a text", send_recommendation = "DON'T", send_why = "call or text 988 first. the text can wait.", rewrite = null.
+- If the draft is empty, whitespace, or pure gibberish: read_label = "nothing there", read_why = "type something first", she_hears = "", forward_status = "SIDEWAYS", forward_why = "nothing to move", send_recommendation = "WAIT", send_why = "write the draft first", rewrite = null.
+- If the draft is benign and casual (e.g. "wyd" to a friend): read_label = "fine", read_why says it's fine, send_recommendation = "SEND IT", rewrite = null. don't overthink it.
+
+Be direct. No hedging. No "maybe consider." He asked for a gut check, give him one.`;
+
+async function readIt() {
+  hideAll();
+  const draft = textarea.value.trim();
+  const who = getSelected('who-pills') || 'Other';
+  const want = getSelected('want-pills') || 'Not sure';
+
+  if (!draft) {
+    errorEl.textContent = "type something first";
+    errorEl.classList.add('show');
+    return;
+  }
+
+  goBtn.disabled = true;
+  loading.classList.add('show');
+
+  const userMessage = `to: ${who}\nwhat i want: ${want}\n\ndraft:\n${draft}`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 400,
+        system: SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: userMessage }]
+      })
+    });
+
+    if (!res.ok) throw new Error('api');
+    const data = await res.json();
+    const text = data.content?.[0]?.text || '';
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('parse');
+    const parsed = JSON.parse(jsonMatch[0]);
+
+    loading.classList.remove('show');
+
+    if ((parsed.read_label || '').toLowerCase() === 'crisis') {
+      crisis.classList.add('show');
+      goBtn.disabled = false;
+      return;
+    }
+
+    document.getElementById('read-label').textContent = parsed.read_label || '';
+    document.getElementById('read-why').textContent = parsed.read_why || '';
+    document.getElementById('she-hears').textContent = parsed.she_hears || '';
+
+    const fwdEl = document.getElementById('forward-status');
+    fwdEl.textContent = parsed.forward_status || '';
+    setLabelColor(fwdEl, parsed.forward_status);
+    document.getElementById('forward-why').textContent = parsed.forward_why || '';
+
+    const sendEl = document.getElementById('send-rec');
+    sendEl.textContent = parsed.send_recommendation || '';
+    setLabelColor(sendEl, parsed.send_recommendation);
+    document.getElementById('send-why').textContent = parsed.send_why || '';
+
+    if (parsed.rewrite && parsed.rewrite.trim()) {
+      document.getElementById('rewrite-text').textContent = parsed.rewrite.trim();
+      document.getElementById('rewrite-block').style.display = 'block';
+    }
+
+    output.classList.add('show');
+  } catch (err) {
+    loading.classList.remove('show');
+    errorEl.textContent = "couldn't reach the brain, try again";
+    errorEl.classList.add('show');
+  } finally {
+    goBtn.disabled = false;
+  }
+}
+
+goBtn.addEventListener('click', readIt);
+</script>
+</body>
+</html>
