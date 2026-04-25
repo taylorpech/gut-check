@@ -310,8 +310,132 @@
       padding-top: 16px;
     }
 
+    .section-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .section-nav a {
+      display: block;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color .15s, background .15s;
+    }
+    .section-nav a:hover {
+      border-color: rgba(102,224,194,.45);
+      background: rgba(102,224,194,.08);
+    }
+    .section-nav strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+    .section-nav span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .callout {
+      font-size: 17px;
+      font-style: italic;
+      color: var(--text);
+      border-left: 3px solid var(--accent);
+      padding: 12px 18px;
+      margin: 20px 0;
+      background: rgba(102,224,194,.06);
+      border-radius: 0 12px 12px 0;
+    }
+
+    .subhead {
+      margin: 26px 0 6px;
+      font-size: 17px;
+      letter-spacing: -.01em;
+      color: var(--text);
+    }
+
+    .checklist { list-style: none; padding-left: 0; margin: 10px 0 0; }
+    .checklist li {
+      position: relative;
+      padding-left: 28px;
+      margin: 8px 0;
+      color: var(--muted);
+    }
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 4px;
+      background: rgba(255,255,255,.04);
+    }
+    .checklist.warn li::before {
+      border-color: rgba(255,123,123,.5);
+      background: rgba(255,123,123,.1);
+    }
+
+    .day-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .day-grid .phase {
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .dash-cell {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+    }
+    .dash-label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 8px;
+    }
+    .dash-value {
+      display: block;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .dash-note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 16px;
+      font-style: italic;
+    }
+    .dash-note code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      background: rgba(255,255,255,.05);
+      padding: 2px 6px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+    }
+
     @media (max-width: 900px) {
-      .hero-grid, .two, .build-grid { grid-template-columns: 1fr; }
+      .hero-grid, .two, .build-grid, .section-nav, .dash-grid { grid-template-columns: 1fr; }
+      .day-grid { grid-template-columns: repeat(2, 1fr); }
       header, section { padding: 22px; }
     }
 
@@ -345,7 +469,22 @@
       </div>
     </header>
 
-    <section>
+    <nav class="section-nav">
+      <a href="#idea-oven">
+        <strong>Idea Oven</strong>
+        <span>5-idea comparison</span>
+      </a>
+      <a href="#action-plan">
+        <strong>Action Plan</strong>
+        <span>Build in Paradise sprint</span>
+      </a>
+      <a href="#results-dash">
+        <strong>Results Dash</strong>
+        <span>Manual launch metrics</span>
+      </a>
+    </nav>
+
+    <section id="idea-oven">
       <h2>Fast ranking</h2>
       <p>The best first move is a two-engine system: consumer membership for recurring revenue, plus brand/UGC packages to monetize the look quickly.</p>
       <div class="cards">
@@ -582,6 +721,156 @@
       <p class="footer-note">
         Compliance note: position v1 as education, accountability, community, and follow-along programming. Use clear disclosures for paid brand content, avoid guaranteed results, define recurring billing terms, and make trip/reward rules explicit.
       </p>
+    </section>
+
+    <section id="action-plan">
+      <h2>Action Plan: Build in Paradise / 13-Day Shirts-Off Sprint</h2>
+      <p>Where we are right now. No app, no subscriptions, no paid ads, no fancy logo. Just the smallest scrappy version that proves people will actually pay for it before we build any of the bigger stuff.</p>
+
+      <p class="callout">"The photos stop the scroll. The b-roll feeds the machine. The scorecard sells the system."</p>
+
+      <h3 class="subhead">Funnel website checklist</h3>
+      <ul class="checklist">
+        <li>Hero headline</li>
+        <li>Brian / Build in Paradise intro</li>
+        <li>13-Day Shirts-Off Sprint offer</li>
+        <li>Who it is for</li>
+        <li>What they get</li>
+        <li>Proof / check-in system</li>
+        <li>CTA: Apply for the first sprint</li>
+        <li>Disclaimer: education / accountability, not medical advice</li>
+      </ul>
+
+      <h3 class="subhead">Content kit checklist</h3>
+      <ul class="checklist">
+        <li>Sunset hero shirtless shot</li>
+        <li>Walking-at-sunset discipline shot</li>
+        <li>Scorecard / proof shot</li>
+        <li>Pull-up / push-up action shot</li>
+        <li>Tasteful sunset silhouette</li>
+        <li>iPhone setup behind-the-scenes</li>
+        <li>Shoes / towel / water bottle close-up</li>
+        <li>Outfit transition</li>
+        <li>Editing / reviewing clips</li>
+        <li>End-of-day recap</li>
+      </ul>
+
+      <h3 class="subhead">Budget guardrails</h3>
+      <ul>
+        <li>Bare minimum: <strong>$25–$60</strong> if he already has an iPhone.</li>
+        <li>Better tiny kit: <strong>$100–$250</strong>.</li>
+        <li>Paid ads cap: <strong>$100 max</strong> for the first test.</li>
+        <li>Total first-week cap: <strong>$350</strong>.</li>
+        <li>Do not buy: expensive cameras, drones, gimbals, studio rentals, merch, supplements, or app infrastructure. Not yet.</li>
+      </ul>
+
+      <h3 class="subhead">First-week checklist</h3>
+      <div class="build-grid">
+        <div class="phase"><b>Day 1</b>Name the offer.</div>
+        <div class="phase"><b>Day 2</b>Draft the funnel page.</div>
+        <div class="phase"><b>Day 3</b>Plan the shoot.</div>
+        <div class="phase"><b>Day 4</b>Shoot sunset content.</div>
+        <div class="phase"><b>Day 5</b>Edit first content batch.</div>
+        <div class="phase"><b>Day 6</b>Write launch copy.</div>
+        <div class="phase"><b>Day 7</b>Soft launch with direct invites.</div>
+      </div>
+
+      <h3 class="subhead">13-day sprint outline</h3>
+      <div class="day-grid">
+        <div class="phase"><b>Day 1</b>Baseline.</div>
+        <div class="phase"><b>Day 2</b>Training standard.</div>
+        <div class="phase"><b>Day 3</b>Food standard.</div>
+        <div class="phase"><b>Day 4</b>Scorecard check.</div>
+        <div class="phase"><b>Day 5</b>Shirt-off confidence check.</div>
+        <div class="phase"><b>Day 6</b>Brotherhood / accountability.</div>
+        <div class="phase"><b>Day 7</b>Midpoint review.</div>
+        <div class="phase"><b>Day 8</b>Discipline reset.</div>
+        <div class="phase"><b>Day 9</b>Performance marker.</div>
+        <div class="phase"><b>Day 10</b>Visual proof.</div>
+        <div class="phase"><b>Day 11</b>Standards day.</div>
+        <div class="phase"><b>Day 12</b>Final push.</div>
+        <div class="phase"><b>Day 13</b>Final receipts.</div>
+      </div>
+
+      <h3 class="subhead">Kill switches</h3>
+      <p>If any of these flip true, stop and rethink. Don't grind through a broken signal.</p>
+      <ul class="checklist warn">
+        <li>Nobody understands it.</li>
+        <li>People think it is personal training.</li>
+        <li>People only react to shirtless photos and ignore the offer.</li>
+        <li>Brian does not want to post consistently.</li>
+        <li>The ex-military angle feels fake or forced.</li>
+        <li>No one signs up after 50 direct invites.</li>
+        <li>The page gets clicks but no applications.</li>
+        <li>It starts drifting into adult-content vibes.</li>
+        <li>It requires an app before anyone pays.</li>
+      </ul>
+
+      <h3 class="subhead">What not to build yet</h3>
+      <p>Tempting. Don't. None of these get built before someone actually pays for the sprint.</p>
+      <ul class="checklist warn">
+        <li>Full app</li>
+        <li>Proof Vault</li>
+        <li>Stripe subscriptions</li>
+        <li>Member login</li>
+        <li>Community platform</li>
+        <li>Trip / cruise rules</li>
+        <li>Merch</li>
+        <li>Paid ads campaign</li>
+        <li>Creator marketplace</li>
+        <li>Fancy logo</li>
+        <li>Military-themed branding</li>
+      </ul>
+    </section>
+
+    <section id="results-dash">
+      <h2>Results Dash</h2>
+      <p>Manual for now. Update by hand at the end of each session. No analytics, no tracking pixels, no backend, no auto-refresh — numbers come from your eyes and a notepad. When the numbers actually move, then we build a real dashboard.</p>
+
+      <div class="dash-grid">
+        <div class="dash-cell">
+          <span class="dash-label">Page live?</span>
+          <span class="dash-value">—</span>
+        </div>
+        <div class="dash-cell">
+          <span class="dash-label">Content assets created</span>
+          <span class="dash-value">0</span>
+        </div>
+        <div class="dash-cell">
+          <span class="dash-label">Posts published</span>
+          <span class="dash-value">0</span>
+        </div>
+        <div class="dash-cell">
+          <span class="dash-label">Direct invites sent</span>
+          <span class="dash-value">0</span>
+        </div>
+        <div class="dash-cell">
+          <span class="dash-label">Replies</span>
+          <span class="dash-value">0</span>
+        </div>
+        <div class="dash-cell">
+          <span class="dash-label">Applications / signups</span>
+          <span class="dash-value">0</span>
+        </div>
+        <div class="dash-cell">
+          <span class="dash-label">Serious paid signals</span>
+          <span class="dash-value">0</span>
+        </div>
+        <div class="dash-cell">
+          <span class="dash-label">Spend</span>
+          <span class="dash-value">$0</span>
+        </div>
+        <div class="dash-cell">
+          <span class="dash-label">Biggest objection</span>
+          <span class="dash-value">—</span>
+        </div>
+        <div class="dash-cell">
+          <span class="dash-label">Kill switch status</span>
+          <span class="dash-value">Green</span>
+        </div>
+      </div>
+
+      <p class="dash-note">Edit numbers directly in <code>brian-idea-oven/index.html</code> after each session. No database, no backend, no third-party analytics. That is the point right now.</p>
     </section>
   </main>
 </body>
