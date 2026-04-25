@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Idea Oven — Hawaii Youth Venture Heat Map</title>
+  <title>Hawaii Youth Venture Heat Map — Idea Oven Preview</title>
   <style>
     :root {
       --bg: #070817;
@@ -43,6 +43,28 @@
       width: min(1240px, calc(100vw - 32px));
       margin: 0 auto;
       padding: 22px 0 70px;
+    }
+
+    .preview-banner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(255,79,216,.18), rgba(35,213,255,.16));
+      font-size: 13px;
+      letter-spacing: .03em;
+      color: #f7f7ff;
+    }
+    .preview-banner a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px dashed rgba(255,255,255,.4);
     }
 
     .hero {
@@ -783,12 +805,17 @@
       .hero, .card, .mini-card, .table-wrap, .leader-row, .thirteen-day { background: #fff; color: #111; border-color: #ccc; box-shadow: none; break-inside: avoid; }
       .gradient-text { color: #111; background: none; }
       .muted, .card p, .mini-card p, td small, .tagline, .footer-note, .timeline ul, .playbox ul, .sprint-13 ul, .thirteen-day .td-cell { color: #333; }
-      button, .controls { display: none; }
+      button, .controls, .preview-banner { display: none; }
     }
   </style>
 </head>
 <body>
   <main class="page">
+    <div class="preview-banner">
+      <span>✦ Staged preview &mdash; heat-map layout for the Ten Fast Plays. Not live yet.</span>
+      <a href="index.html">Back to current /idea-oven/ &rarr;</a>
+    </div>
+
     <section class="hero">
       <div class="eyebrow">Hawaii &middot; Gen Z &middot; AI-native &middot; 13-day sprint &rarr; 12-month operating model</div>
       <h1>From a 13-day cash sprint to a <span class="gradient-text">12-month heat machine.</span></h1>
@@ -1051,7 +1078,7 @@
     <div class="footer-note">
       Modeling notes: revenue is cash collected or booked, not audited. Hawaii general excise tax (effective 4.7120% in Hawaii County through 2030 for most service activity), payment processing (commonly ~2.9% + 30&cent; per card charge), income taxes, insurance, chargebacks, and legal review are not fully baked in. Compliance floor: clear creator and endorsement disclosures, no fake testimonials, licensed music and assets only, no synthetic voice or likeness without permission, prior consent for marketing texts, and serious extra care if any play touches users under 13.
       <br /><span class="print-tip">Tip: print or save this page to PDF after tweaking the numbers.</span>
-      <br /><a class="back-link" href="../">&larr; Back to Gut Check</a>
+      <br /><a class="back-link" href="index.html">&larr; Back to /idea-oven/ index</a>
     </div>
   </main>
 
