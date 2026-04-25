@@ -433,6 +433,129 @@
       border: 1px solid var(--line);
     }
 
+    .funnel-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin: 14px 0 18px;
+    }
+    .funnel-flow > span {
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      font-size: 13px;
+      color: var(--text);
+    }
+    .funnel-flow .arrow {
+      border: none;
+      background: none;
+      padding: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .cta-row .cta {
+      padding: 10px 16px;
+      border: 1px solid rgba(102,224,194,.45);
+      border-radius: 999px;
+      background: rgba(102,224,194,.08);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .cta-row .cta.secondary {
+      border-color: var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .copy-block {
+      margin: 14px 0;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+    }
+    .copy-block .copy-label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .day-block {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.035);
+      margin-bottom: 14px;
+    }
+    .day-block h4 {
+      margin: 0 0 14px;
+      font-size: 18px;
+      letter-spacing: -.01em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .day-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(102,224,194,.12);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .lane { margin-bottom: 10px; }
+    .lane-label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--accent);
+      margin-bottom: 2px;
+      font-weight: 700;
+    }
+    .lane-stretch .lane-label { color: var(--accent2); }
+    .lane .checklist { margin-top: 4px; }
+    .script {
+      margin: 14px 0 0;
+      padding: 12px 16px;
+      border-left: 3px solid var(--accent2);
+      background: rgba(122,183,255,.07);
+      border-radius: 0 12px 12px 0;
+      font-style: italic;
+      color: var(--text);
+    }
+    .script::before {
+      content: "Script";
+      display: block;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--accent2);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+    }
+
     @media (max-width: 900px) {
       .hero-grid, .two, .build-grid, .section-nav, .dash-grid { grid-template-columns: 1fr; }
       .day-grid { grid-template-columns: repeat(2, 1fr); }
@@ -729,6 +852,38 @@
 
       <p class="callout">"The photos stop the scroll. The b-roll feeds the machine. The scorecard sells the system."</p>
 
+      <h3 class="subhead">Funnel v0: manual before software</h3>
+      <p>The first funnel is humans, not software. Capture interest with a static page, route applications through a manual list, reply by hand, run a small beta. No backend, no Stripe, no app — until people actually want in.</p>
+
+      <div class="funnel-flow">
+        <span>Post / Reel / Story</span>
+        <span class="arrow">→</span>
+        <span>Brian page</span>
+        <span class="arrow">→</span>
+        <span>CTA: Apply for the first sprint</span>
+        <span class="arrow">→</span>
+        <span>Manual application / waitlist</span>
+        <span class="arrow">→</span>
+        <span>Personal reply</span>
+        <span class="arrow">→</span>
+        <span>Beta sprint</span>
+      </div>
+
+      <div class="cta-row">
+        <span class="cta">Apply for the first sprint</span>
+        <span class="cta secondary">Backup: DM "PARADISE" to get the first invite.</span>
+      </div>
+
+      <div class="copy-block">
+        <span class="copy-label">Funnel copy</span>
+        Build in Paradise is a 13-day accountability sprint for men who want to bulk, build structure, and prove the work with a simple scorecard.
+      </div>
+
+      <div class="copy-block">
+        <span class="copy-label">What this is not</span>
+        This is not medical advice, therapy, personal training, or a guaranteed transformation. It is education, accountability, community, and proof-based follow-through.
+      </div>
+
       <h3 class="subhead">Funnel website checklist</h3>
       <ul class="checklist">
         <li>Hero headline</li>
@@ -773,6 +928,183 @@
         <div class="phase"><b>Day 5</b>Edit first content batch.</div>
         <div class="phase"><b>Day 6</b>Write launch copy.</div>
         <div class="phase"><b>Day 7</b>Soft launch with direct invites.</div>
+      </div>
+
+      <h3 class="subhead">First 7 days: script-level launch plan</h3>
+      <p>The expanded version of the first-week checklist. Each day has a goal, three key deliverables, three stretch deliverables, and a script Brian can read on camera or paste into a DM.</p>
+
+      <div class="day-block">
+        <h4><span class="day-tag">Day 1</span>Name the mission</h4>
+        <div class="lane">
+          <span class="lane-label">Key</span>
+          <ul class="checklist">
+            <li>Final offer name: Build in Paradise / 13-Day Shirts-Off Sprint</li>
+            <li>Final CTA: Apply for the first sprint</li>
+            <li>One-sentence offer</li>
+          </ul>
+        </div>
+        <div class="lane lane-stretch">
+          <span class="lane-label">Stretch</span>
+          <ul class="checklist">
+            <li>3 headline options</li>
+            <li>3 audience angles</li>
+            <li>1 DM invite draft</li>
+          </ul>
+        </div>
+        <p class="script">"I'm testing something called Build in Paradise. It's a 13-day shirts-off sprint for guys who want to bulk up, tighten up their routine, and actually track the work. Not fake personal trainer stuff. Not miracle transformation nonsense. Just workouts, food basics, check-ins, photos, and a scorecard. DM 'PARADISE' if you want the first invite."</p>
+      </div>
+
+      <div class="day-block">
+        <h4><span class="day-tag">Day 2</span>Draft the funnel</h4>
+        <div class="lane">
+          <span class="lane-label">Key</span>
+          <ul class="checklist">
+            <li>Funnel page outline</li>
+            <li>CTA copy</li>
+            <li>Manual application questions</li>
+          </ul>
+        </div>
+        <div class="lane lane-stretch">
+          <span class="lane-label">Stretch</span>
+          <ul class="checklist">
+            <li>Simple Google Form / Tally form draft</li>
+            <li>Confirmation message</li>
+            <li>FAQ / disclaimer block</li>
+          </ul>
+        </div>
+        <p class="script">"I'm not building the app first. That's how people waste six months making a pretty dashboard nobody asked for. First we're testing the behavior: will guys show up, track the work, submit the proof, and keep going for 13 days?"</p>
+      </div>
+
+      <div class="day-block">
+        <h4><span class="day-tag">Day 3</span>Scout and prep the shoot</h4>
+        <div class="lane">
+          <span class="lane-label">Key</span>
+          <ul class="checklist">
+            <li>Pick location</li>
+            <li>Pick outfits</li>
+            <li>Final shot list in Notes app</li>
+          </ul>
+        </div>
+        <div class="lane lane-stretch">
+          <span class="lane-label">Stretch</span>
+          <ul class="checklist">
+            <li>Scout 2 backup angles</li>
+            <li>Test tripod framing</li>
+            <li>Record 3 rough talking-head clips</li>
+          </ul>
+        </div>
+        <p class="script">"We're building this with an iPhone, a sunset, and a scorecard first. If the idea can't get signal like this, a fancy camera won't save it."</p>
+      </div>
+
+      <div class="day-block">
+        <h4><span class="day-tag">Day 4</span>Sunset shoot</h4>
+        <div class="lane">
+          <span class="lane-label">Key</span>
+          <ul class="checklist">
+            <li>10 usable photos</li>
+            <li>20 vertical b-roll clips</li>
+            <li>3 talking-head clips</li>
+          </ul>
+        </div>
+        <div class="lane lane-stretch">
+          <span class="lane-label">Stretch</span>
+          <ul class="checklist">
+            <li>1 silhouette hero shot</li>
+            <li>1 scorecard / proof clip</li>
+            <li>1 funny behind-the-scenes reset clip</li>
+          </ul>
+        </div>
+        <p class="script">"The body is the hook. The scorecard is the product. Anybody can post a shirtless picture. The question is whether you can repeat the habits that built it."</p>
+      </div>
+
+      <div class="day-block">
+        <h4><span class="day-tag">Day 5</span>Edit first batch</h4>
+        <div class="lane">
+          <span class="lane-label">Key</span>
+          <ul class="checklist">
+            <li>3 short videos</li>
+            <li>5 caption drafts</li>
+            <li>1 landing-page hero image selected</li>
+          </ul>
+        </div>
+        <div class="lane lane-stretch">
+          <span class="lane-label">Stretch</span>
+          <ul class="checklist">
+            <li>1 scorecard graphic</li>
+            <li>1 carousel draft</li>
+            <li>1 'what this is not' post</li>
+          </ul>
+        </div>
+        <p class="script">"No proof, no program. The sprint is built around a simple scorecard: workouts, food basics, sleep, photos, weight, waist, and consistency. The goal is not perfection. The goal is receipts."</p>
+      </div>
+
+      <div class="day-block">
+        <h4><span class="day-tag">Day 6</span>Promotion kit</h4>
+        <div class="lane">
+          <span class="lane-label">Key</span>
+          <ul class="checklist">
+            <li>10 hooks</li>
+            <li>3 captions</li>
+            <li>2 DM scripts</li>
+          </ul>
+        </div>
+        <div class="lane lane-stretch">
+          <span class="lane-label">Stretch</span>
+          <ul class="checklist">
+            <li>1 email / waitlist message</li>
+            <li>1 Facebook post</li>
+            <li>1 Instagram Story poll sequence</li>
+          </ul>
+        </div>
+        <p class="script">"Some guys do not need another motivational quote. They need a mission, a checklist, and a reason not to disappear on Day 4."</p>
+      </div>
+
+      <div class="day-block">
+        <h4><span class="day-tag">Day 7</span>Soft launch</h4>
+        <div class="lane">
+          <span class="lane-label">Key</span>
+          <ul class="checklist">
+            <li>Publish first post</li>
+            <li>Send 20 direct invites</li>
+            <li>Track replies / signups in a sheet</li>
+          </ul>
+        </div>
+        <div class="lane lane-stretch">
+          <span class="lane-label">Stretch</span>
+          <ul class="checklist">
+            <li>5 feedback calls or voice notes</li>
+            <li>1 paid beta conversation</li>
+            <li>1 page update based on objections</li>
+          </ul>
+        </div>
+        <p class="script">"I'm testing the first Build in Paradise sprint. It's a 13-day shirts-off accountability sprint for men who want to bulk, build structure, and keep receipts. First version is small and manual because I want to prove the system before building anything bigger. DM 'PARADISE' if you want the first invite."</p>
+      </div>
+
+      <h3 class="subhead">Daily placement plan</h3>
+      <ul>
+        <li><strong>Instagram Story:</strong> 1–3 frames/day</li>
+        <li><strong>TikTok or Reel:</strong> 1 short video/day</li>
+        <li><strong>DM:</strong> 5–10 direct invites/day</li>
+        <li><strong>Page:</strong> update only if there is a real clarity problem</li>
+      </ul>
+
+      <h3 class="subhead">Budget rule</h3>
+      <ul>
+        <li>First-week hard cap: <strong>$350</strong>.</li>
+        <li>Paid ads: <strong>$0</strong> first week unless organic signal appears; <strong>$100 max</strong> test after signal.</li>
+      </ul>
+
+      <h3 class="subhead">Results Dash targets by Day 7</h3>
+      <div class="dash-grid">
+        <div class="dash-cell"><span class="dash-label">Photos</span><span class="dash-value">10</span></div>
+        <div class="dash-cell"><span class="dash-label">Clips</span><span class="dash-value">20</span></div>
+        <div class="dash-cell"><span class="dash-label">Edited short videos</span><span class="dash-value">3</span></div>
+        <div class="dash-cell"><span class="dash-label">Captions</span><span class="dash-value">5</span></div>
+        <div class="dash-cell"><span class="dash-label">DMs</span><span class="dash-value">20–50</span></div>
+        <div class="dash-cell"><span class="dash-label">Replies</span><span class="dash-value">10</span></div>
+        <div class="dash-cell"><span class="dash-label">Applications</span><span class="dash-value">5</span></div>
+        <div class="dash-cell"><span class="dash-label">Serious paid signals</span><span class="dash-value">3</span></div>
+        <div class="dash-cell"><span class="dash-label">Ad spend</span><span class="dash-value">$0–$100</span></div>
       </div>
 
       <h3 class="subhead">13-day sprint outline</h3>
