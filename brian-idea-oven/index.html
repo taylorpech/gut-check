@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitness Creator Monetization Ideas - Comparison Summary</title>
+  <style>
+    :root {
+      --bg: #071018;
+      --panel: #0d1b25;
+      --panel2: #102331;
+      --text: #eef7ff;
+      --muted: #a8bdd0;
+      --line: rgba(255,255,255,.12);
+      --accent: #66e0c2;
+      --accent2: #7ab7ff;
+      --warn: #ffd166;
+      --danger: #ff7b7b;
+      --good: #80ed99;
+      --shadow: 0 20px 60px rgba(0,0,0,.28);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(102,224,194,.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(122,183,255,.15), transparent 32%),
+        linear-gradient(180deg, #071018 0%, #09151e 55%, #05090d 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 60px;
+    }
+
+    .top-nav {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding-top: 18px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .top-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      transition: color .15s, border-color .15s, background .15s;
+    }
+
+    .top-nav a:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,.28);
+      background: rgba(255,255,255,.06);
+    }
+
+    header {
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(13,27,37,.94), rgba(16,35,49,.76));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -80px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(102,224,194,.15);
+      filter: blur(8px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 7px 12px;
+      border: 1px solid rgba(102,224,194,.35);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(102,224,194,.08);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    h1 {
+      font-size: clamp(34px, 6vw, 66px);
+      line-height: .95;
+      margin: 22px 0 16px;
+      letter-spacing: -.05em;
+      max-width: 900px;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 870px;
+      margin: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .metric {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.045);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 25px;
+      line-height: 1;
+      margin-bottom: 7px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    section {
+      margin-top: 26px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(13,27,37,.78);
+      box-shadow: var(--shadow);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      letter-spacing: -.03em;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      letter-spacing: -.02em;
+    }
+
+    p { margin: 0 0 12px; color: var(--muted); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(220px, 1fr));
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .card {
+      min-width: 220px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(122,183,255,.12);
+      color: #bdddff;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .score {
+      display: flex;
+      gap: 6px;
+      margin: 12px 0 14px;
+    }
+
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.15);
+    }
+
+    .dot.on { background: var(--accent); border-color: var(--accent); }
+
+    .mini {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 960px;
+      background: rgba(255,255,255,.025);
+    }
+
+    th, td {
+      padding: 14px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    td { color: var(--muted); }
+
+    td strong { color: var(--text); }
+
+    tr:last-child td { border-bottom: none; }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .high { background: rgba(128,237,153,.14); color: var(--good); }
+    .med { background: rgba(255,209,102,.14); color: var(--warn); }
+    .low { background: rgba(255,123,123,.14); color: var(--danger); }
+
+    .two {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+    }
+
+    .box {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+    }
+
+    ul, ol { margin: 10px 0 0; padding-left: 20px; color: var(--muted); }
+    li { margin: 8px 0; }
+
+    .winner {
+      border-color: rgba(102,224,194,.45);
+      background: linear-gradient(135deg, rgba(102,224,194,.12), rgba(122,183,255,.07));
+    }
+
+    .build-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .phase {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .phase b {
+      color: var(--accent);
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .two, .build-grid { grid-template-columns: 1fr; }
+      header, section { padding: 22px; }
+    }
+
+    @media print {
+      body { background: white; color: #111; }
+      header, section, .card, .box, .phase { box-shadow: none; background: white; color: #111; border-color: #ddd; }
+      p, td, li, .mini, .sub, .footer-note { color: #333; }
+      .cards { display: block; }
+      .card { margin-bottom: 12px; page-break-inside: avoid; }
+      .top-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="../">← GutCheck</a>
+    <a href="../idea-oven/">Vince Idea Oven</a>
+  </nav>
+  <main class="wrap">
+    <header>
+      <div class="eyebrow">Hawaii physique → national funnel</div>
+      <h1>5 scalable creator-fitness launch ideas</h1>
+      <p class="sub">
+        A comparison summary for a fitness creator with a strong look who wants to monetize body/image through Instagram, Facebook, TikTok, Snapchat, subscriptions, proof-based accountability, and brand-safe offers — not adult content.
+      </p>
+      <div class="hero-grid">
+        <div class="metric"><strong>13 days</strong><span>Launch sprint window</span></div>
+        <div class="metric"><strong>$100K+</strong><span>Target collected cash math</span></div>
+        <div class="metric"><strong>$99 / $249</strong><span>Core monthly offer anchors</span></div>
+        <div class="metric"><strong>Proof-first</strong><span>Photos, weight, waist, PRs, streaks</span></div>
+      </div>
+    </header>
+
+    <section>
+      <h2>Fast ranking</h2>
+      <p>The best first move is a two-engine system: consumer membership for recurring revenue, plus brand/UGC packages to monetize the look quickly.</p>
+      <div class="cards">
+        <article class="card winner">
+          <span class="tag">#1 Ship first</span>
+          <h3>Mission 99 / Victory 249</h3>
+          <p class="mini">Recurring membership with annual anchors, trip eligibility, proof scorecards, and community.</p>
+          <div class="score"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></div>
+          <p class="mini"><strong>Why:</strong> strongest long-term business and easiest to compound.</p>
+        </article>
+
+        <article class="card winner">
+          <span class="tag">#2 Fast cash</span>
+          <h3>Physique Creator Studio</h3>
+          <p class="mini">UGC/ad packages for activewear, grooming, recovery, travel, hydration, and men’s lifestyle brands.</p>
+          <div class="score"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></div>
+          <p class="mini"><strong>Why:</strong> few buyers needed; directly monetizes image.</p>
+        </article>
+
+        <article class="card">
+          <span class="tag">#3 Best lead magnet</span>
+          <h3>13-Day Sprint Funnel</h3>
+          <p class="mini">Low-ticket challenge that converts buyers into annual membership or premium cohort.</p>
+          <div class="score"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></div>
+          <p class="mini"><strong>Why:</strong> perfect for ads, urgency, and proof generation.</p>
+        </article>
+
+        <article class="card">
+          <span class="tag">#4 Build moat</span>
+          <h3>Proof Vault App</h3>
+          <p class="mini">Lightweight proof tracker: photos, weight, waist, lift PRs, streak coins, referral links, recap cards.</p>
+          <div class="score"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div>
+          <p class="mini"><strong>Why:</strong> turns a generic challenge into a defensible system.</p>
+        </article>
+
+        <article class="card">
+          <span class="tag">#5 Premium niche</span>
+          <h3>Ex-Military Discipline Cohort</h3>
+          <p class="mini">Men’s confidence, schedule discipline, body presentation, social confidence, grooming, date-readiness.</p>
+          <div class="score"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div>
+          <p class="mini"><strong>Why:</strong> high ticket, differentiated, but depends on credibility.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Side-by-side comparison</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Idea</th>
+              <th>Core offer</th>
+              <th>13-day $100K path</th>
+              <th>Teaser hook</th>
+              <th>Proofable goals</th>
+              <th>Automation build</th>
+              <th>Risk / complexity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mission 99 / Victory 249</strong><br><span class="pill high">Highest confidence</span></td>
+              <td>$99/mo core membership; $249/mo VIP/pod/trip tier. Push annual: $999 and $2,499.</td>
+              <td>50 Mission annuals + 20 Victory annuals + 50 Mission monthly = about $104,880.</td>
+              <td>“You don’t win the trip by buying. You win by proving the work.”</td>
+              <td>Weekly weight, waist, workout compliance, photo check-ins, PRs, attendance.</td>
+              <td>Checkout, onboarding quiz, proof portal, member dashboard, weekly score emails, referral links.</td>
+              <td><span class="pill med">Medium</span> Needs fulfillment discipline and clear recurring-billing/trip terms.</td>
+            </tr>
+
+            <tr>
+              <td><strong>13-Day Sprint Funnel</strong><br><span class="pill high">Best ad front-end</span></td>
+              <td>$47–$67 “build with me” challenge that upsells to annual membership.</td>
+              <td>600 buyers at $47 + 30 Victory annual upgrades at $2,499 = about $103,170.</td>
+              <td>“I’m building my best body in public for 13 days. Join the scorecard.”</td>
+              <td>Daily checklist, baseline photo, streaks, weigh-ins, mini leaderboard.</td>
+              <td>Lead forms, SMS/email sequence, daily lesson unlocks, leaderboard, cart-close timers.</td>
+              <td><span class="pill med">Medium</span> Ad spend and conversion math must be watched daily.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Physique Creator Studio</strong><br><span class="pill high">Fastest B2B cash</span></td>
+              <td>Brand-safe UGC/ad packages: raw clips, edited ads, stills, usage rights.</td>
+              <td>10 packages at $10K, or 5 at $15K + 5 at $5K = $100K.</td>
+              <td>“Hawaii-built physique content for brands that want scroll-stopping trust.”</td>
+              <td>Deliverables, usage rights, posting dates, campaign CTR/CPA if brands share data.</td>
+              <td>Media kit, brand pitch CRM, proposal generator, invoice/contract templates, asset delivery portal.</td>
+              <td><span class="pill low">Lower ops</span> Requires sales outreach and clear paid-partnership disclosures.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Proof Vault Founders App</strong><br><span class="pill med">Best moat</span></td>
+              <td>Founder presale for the proof/tracking identity system behind the challenge.</td>
+              <td>150 founders at $499 + 20 captains at $1,499 = about $104,830.</td>
+              <td>“Your progress needs receipts. Photos, streaks, PRs, and proof coins in one vault.”</td>
+              <td>Baseline photo vault, weight, waist, lift PRs, compliance, coins, badges, referrals.</td>
+              <td>Auth, Stripe, upload vault, score engine, recap cards, admin review panel, referral tracking.</td>
+              <td><span class="pill med">Medium-high</span> Build only the MVP first. No bloated AI workout app yet.</td>
+            </tr>
+
+            <tr>
+              <td><strong>Ex-Military Discipline Cohort</strong><br><span class="pill med">Premium niche</span></td>
+              <td>$2,997 cohort for discipline, body presentation, social confidence, style/grooming, date-readiness.</td>
+              <td>35 seats at $2,997 = about $104,895.</td>
+              <td>“Not alpha nonsense. A 6-week discipline operating system for men who want receipts.”</td>
+              <td>Calendar compliance, gym consistency, grooming checklist, communication drills, confidence reps.</td>
+              <td>Application form, cohort portal, weekly curriculum, group calls, accountability pods, progress reports.</td>
+              <td><span class="pill med">Medium</span> Must avoid therapy claims, trauma treatment, or guaranteed relationship outcomes.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Best launch sequence</h2>
+      <div class="two">
+        <div class="box winner">
+          <h3>Recommended order</h3>
+          <ol>
+            <li><strong>Launch the 13-Day Sprint</strong> as the ad-friendly front door.</li>
+            <li><strong>Upsell into Mission/Victory annual plans</strong> during the sprint and at cart close.</li>
+            <li><strong>Use the best clips and results</strong> to pitch Physique Creator Studio brand packages.</li>
+            <li><strong>Build Proof Vault MVP</strong> while the first group is running.</li>
+            <li><strong>Add the ex-military cohort</strong> only if the audience asks for discipline/confidence content.</li>
+          </ol>
+        </div>
+        <div class="box">
+          <h3>What to avoid at v1</h3>
+          <ul>
+            <li>Do not call it personal training unless credentials/insurance/legal review are handled.</li>
+            <li>Do not promise guaranteed muscle gain, fat loss, dates, or transformation outcomes.</li>
+            <li>Do not make the trip vague. Define qualifying dates, proof rules, exclusions, and cancellation terms.</li>
+            <li>Do not build a giant app first. Sell the system, then build only what fulfillment proves you need.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Development mode: what Codex / Claude Code should build</h2>
+      <div class="build-grid">
+        <div class="phase">
+          <b>Phase 1 — Funnel MVP</b>
+          Lead page, platform-specific UTM capture, Stripe checkout, offer comparison, waiver/disclaimer, confirmation page.
+        </div>
+        <div class="phase">
+          <b>Phase 2 — Proof Portal</b>
+          Member login, onboarding quiz, baseline upload, weight/waist/lift fields, weekly submission reminders.
+        </div>
+        <div class="phase">
+          <b>Phase 3 — Score Engine</b>
+          Compliance percentage, streaks, PR flags, trip eligibility score, admin review queue.
+        </div>
+        <div class="phase">
+          <b>Phase 4 — Viral Assets</b>
+          Auto-generated weekly recap cards, share graphics, referral links, milestone badges, digital coins.
+        </div>
+        <div class="phase">
+          <b>Phase 5 — CRM / Ads</b>
+          Meta/TikTok/Snap lead import, email/SMS sequences, abandoned checkout follow-up, audience tagging.
+        </div>
+        <div class="phase">
+          <b>Phase 6 — Brand Studio</b>
+          Media kit page, package builder, inquiry form, proposal template, content delivery dashboard.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Teaser promo bank</h2>
+      <div class="two">
+        <div class="box">
+          <h3>Short-form hooks</h3>
+          <ul>
+            <li>“I’m turning a Hawaii physique into a national challenge.”</li>
+            <li>“This is not personal training. It’s scored accountability.”</li>
+            <li>“If your body changes when your discipline changes, prove it.”</li>
+            <li>“You don’t win the trip by looking good. You win by showing the work.”</li>
+            <li>“13 days. One scorecard. No hiding.”</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Ad angles by platform</h3>
+          <ul>
+            <li><strong>Instagram/Facebook:</strong> polished aspiration, Hawaii visuals, physique, trip story, proof screenshots.</li>
+            <li><strong>TikTok:</strong> raw confession, build-in-public, “I’m doing this too,” daily challenge clips.</li>
+            <li><strong>Snapchat:</strong> direct-response signup, short urgency, native lead form, fast challenge invite.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Decision matrix</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Idea</th>
+              <th>Speed to launch</th>
+              <th>Scalability</th>
+              <th>Cash potential</th>
+              <th>Brand safety</th>
+              <th>Build difficulty</th>
+              <th>Overall</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mission 99 / Victory 249</strong></td>
+              <td>4/5</td><td>5/5</td><td>5/5</td><td>4/5</td><td>3/5</td><td><span class="pill high">Best first core business</span></td>
+            </tr>
+            <tr>
+              <td><strong>13-Day Sprint Funnel</strong></td>
+              <td>5/5</td><td>4/5</td><td>4/5</td><td>4/5</td><td>2/5</td><td><span class="pill high">Best acquisition engine</span></td>
+            </tr>
+            <tr>
+              <td><strong>Physique Creator Studio</strong></td>
+              <td>4/5</td><td>3/5</td><td>5/5</td><td>5/5</td><td>2/5</td><td><span class="pill high">Best fast B2B money</span></td>
+            </tr>
+            <tr>
+              <td><strong>Proof Vault App</strong></td>
+              <td>2/5</td><td>5/5</td><td>4/5</td><td>5/5</td><td>4/5</td><td><span class="pill med">Best defensibility</span></td>
+            </tr>
+            <tr>
+              <td><strong>Ex-Military Discipline Cohort</strong></td>
+              <td>3/5</td><td>3/5</td><td>5/5</td><td>3/5</td><td>3/5</td><td><span class="pill med">Best premium niche</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footer-note">
+        Compliance note: position v1 as education, accountability, community, and follow-along programming. Use clear disclosures for paid brand content, avoid guaranteed results, define recurring billing terms, and make trip/reward rules explicit.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
