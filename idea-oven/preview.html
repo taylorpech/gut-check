@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11 Plays — Preview for Vince</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #f5f5f5;
+      line-height: 1.5;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 760px; margin: 0 auto; padding: 24px 20px 100px; }
+
+    .preview-banner {
+      background: linear-gradient(90deg, #2a1a0a, #422a06);
+      border: 1px solid #f97316;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: #fbbf24;
+      text-align: center;
+    }
+
+    .header { text-align: center; padding: 24px 0 32px; }
+    .logo { font-size: 12px; letter-spacing: 0.3em; color: #f97316; text-transform: uppercase; margin-bottom: 16px; font-weight: 700; }
+    h1 { font-size: 38px; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+    .subtitle { color: #999; margin-top: 14px; font-size: 15px; padding: 0 12px; }
+
+    .profile-summary {
+      background: #141414;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 0 0 24px;
+    }
+    .profile-summary-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #888; font-weight: 700; margin-bottom: 8px; }
+    .profile-summary-text { color: #ddd; font-size: 14px; line-height: 1.6; }
+
+    .results-wrap { margin-top: 24px; }
+    .section { margin-bottom: 40px; }
+    .section-header { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #1f1f1f; }
+    .section-title { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
+    .section-subtitle { color: #888; font-size: 13px; margin-top: 4px; }
+
+    .ideas { display: flex; flex-direction: column; gap: 14px; }
+    .idea {
+      background: #141414; border: 1px solid #222; border-radius: 12px;
+      padding: 22px 20px;
+    }
+    .idea-tags { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+    .tag {
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+      padding: 3px 8px; border-radius: 4px;
+    }
+    .tag-collab { background: #1e3a5f; color: #93c5fd; }
+    .tag-solo { background: #3a1e5f; color: #c4b5fd; }
+    .tag-seed { background: #4c1212; color: #fca5a5; }
+
+    .idea-status-badge {
+      display: inline-block;
+      background: #f97316;
+      color: #000;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .idea-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+    .idea-title { font-size: 18px; font-weight: 700; line-height: 1.3; }
+    .idea-rating {
+      flex-shrink: 0; padding: 4px 10px; border-radius: 6px;
+      font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums;
+    }
+    .rating-high { background: #14532d; color: #4ade80; }
+    .rating-mid { background: #422a06; color: #fbbf24; }
+    .rating-low { background: #4c1212; color: #f87171; }
+    .idea-pitch { color: #ddd; font-size: 15px; margin-bottom: 16px; }
+
+    .idea-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; padding: 12px; background: #0d0d0d; border-radius: 8px; margin-bottom: 14px; }
+    .meta-item { font-size: 13px; }
+    .meta-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #888; font-weight: 700; margin-bottom: 4px; }
+    .meta-value { color: #f5f5f5; font-weight: 600; }
+
+    .idea-section { margin-top: 14px; }
+    .idea-section-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #888; font-weight: 700; margin-bottom: 8px; }
+    .idea-steps { padding-left: 20px; color: #ccc; font-size: 14px; }
+    .idea-steps li { margin-bottom: 6px; }
+
+    .idea-fit { color: #aaa; font-size: 14px; padding: 12px 14px; background: #0d0d0d; border-left: 3px solid #f97316; border-radius: 4px; margin-top: 14px; font-style: italic; }
+
+    .build-cta {
+      background: #141414;
+      border: 1px solid #f97316;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .build-cta h3 { font-size: 18px; margin-bottom: 8px; }
+    .build-cta p { color: #aaa; font-size: 14px; margin-bottom: 16px; }
+    .build-cta a {
+      display: inline-block; padding: 14px 28px; background: #f97316;
+      color: #000; border-radius: 8px; font-weight: 700; text-decoration: none;
+    }
+
+    .snap-btn {
+      position: fixed; bottom: 20px; right: 20px;
+      padding: 14px 20px; background: #f97316; color: #000;
+      border: none; border-radius: 999px; font-size: 14px; font-weight: 700;
+      cursor: pointer; box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4);
+      z-index: 50;
+    }
+
+    .modal-bg {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+      z-index: 100; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-bg.show { display: flex; }
+    .modal {
+      background: #141414; border: 1px solid #2a2a2a; border-radius: 16px;
+      padding: 28px 24px; max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto;
+    }
+    .modal h2 { font-size: 22px; margin-bottom: 6px; }
+    .modal-sub { color: #888; margin-bottom: 24px; font-size: 14px; }
+    .snap-step { margin-bottom: 22px; }
+    .snap-step-num { display: inline-block; width: 26px; height: 26px; background: #f97316; color: #000; border-radius: 50%; text-align: center; line-height: 26px; font-weight: 700; font-size: 13px; vertical-align: middle; margin-right: 8px; }
+    .snap-step-title { font-weight: 700; display: inline; vertical-align: middle; }
+    .snap-step-body { color: #ccc; margin-top: 8px; padding-left: 34px; font-size: 14px; }
+    .modal-close-btn {
+      display: inline-block; padding: 14px 32px; background: #f97316;
+      color: #000; border: none; border-radius: 8px; font-size: 16px; font-weight: 700;
+      cursor: pointer; width: 100%; margin-top: 16px;
+    }
+
+    .footer { text-align: center; margin-top: 40px; padding: 24px 0; color: #666; font-size: 13px; }
+    .footer a { color: #f97316; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="preview-banner">
+      ✦ Preview mode — sample list calibrated for: 20yo, Big Island, Filipino, Jersey Mike's + community college, lifts/UFC fan, drop-shipping seed
+    </div>
+
+    <div class="header">
+      <div class="logo">11 Plays</div>
+      <h1>Real businesses.<br>Real numbers. Real time.</h1>
+      <p class="subtitle">11 ideas calibrated to who you actually are. 5 you can build with a partner. 5 you can run solo. 1 honest read on the idea TikTok sold you.</p>
+    </div>
+
+    <div id="results" class="results-wrap"></div>
+
+    <div class="build-cta">
+      <h3>Want your own list?</h3>
+      <p>Fill out the form to get 11 plays calibrated to YOU.</p>
+      <a href="index.html">Build my list →</a>
+    </div>
+
+    <div class="footer">
+      <p><a href="../">← Back to Gut Check</a> · Built by Tradewind Labs</p>
+    </div>
+  </div>
+
+  <button id="snapBtn" class="snap-btn">Still can't decide?</button>
+
+  <div id="modal" class="modal-bg">
+    <div class="modal">
+      <h2>How to snap your fingers</h2>
+      <p class="modal-sub">A real skill. Useful for committing.</p>
+      <div class="snap-step"><span class="snap-step-num">1</span><span class="snap-step-title">Position</span><div class="snap-step-body">Press the pad of your thumb against the pad of your middle finger. Index and ring stay relaxed.</div></div>
+      <div class="snap-step"><span class="snap-step-num">2</span><span class="snap-step-title">Pressure</span><div class="snap-step-body">Push the two pads hard against each other.</div></div>
+      <div class="snap-step"><span class="snap-step-num">3</span><span class="snap-step-title">Release</span><div class="snap-step-body">Slide the middle finger off the thumb fast. The middle finger slams down into the base of your thumb. <em>That</em> hit is the snap.</div></div>
+      <div class="snap-step"><span class="snap-step-num">4</span><span class="snap-step-title">Now pick one</span><div class="snap-step-body">You snapped. Scroll up and click the idea that excited you most when you first saw the list.</div></div>
+      <button class="modal-close-btn" id="closeModal">OK, I snapped. Let me pick.</button>
+    </div>
+  </div>
+
+  <script>
+    const SAMPLE_IDEAS = [
+      {
+        title: "FinFree — Finance Coach for 20-Somethings",
+        type: "collab",
+        rating: 9,
+        status: "BUILDING NOW — Phase 1 in progress",
+        pitch: "Motivational-interviewing AI finance coach for 20-somethings figuring out what 'financial freedom' actually means to THEM — not what Dave Ramsey says. Built on Stanford's Bloom research architecture (CHI 2026 Best Paper). 🚀 BUILDING NOW.",
+        time_commitment: "12 hrs/wk (you) + 6 hrs/wk (partner)",
+        startup_capital: "$150",
+        year_1: "$5-20k",
+        year_2: "$80-250k",
+        first_week_steps: [
+          "Domain + waitlist page live by end of week",
+          "Test the Bloom-style two-prompt-chain onboarding on yourself end-to-end",
+          "Post 3 TikToks: 'what nobody tells you about money in your 20s' using your Jersey Mike's paycheck as the visual hook",
+          "DM 20 Filipino-American college students asking 'what does financial freedom mean to you?' — gold for marketing copy AND user research"
+        ],
+        why_fit: "You're 20, working at Jersey Mike's while studying law and accounting. You literally are the target customer. The accounting class handles the money concepts, the law-school discipline handles compliance, and the broke-college-kid lived experience makes your TikToks credible in a way nobody on FinTok can fake."
+      },
+      {
+        title: "Shift — Wellness Coach (Bloom-Inspired)",
+        type: "collab",
+        rating: 8,
+        pitch: "AI wellness coach that doesn't prescribe workouts — it helps you figure out what healthy means to you, then meets you there. Inspired by Stanford's Bloom research showing nonprescriptive coaching shifts mindset better than prescription.",
+        time_commitment: "12 hrs/wk (you) + 6 hrs/wk (partner)",
+        startup_capital: "$150",
+        year_1: "$5-15k",
+        year_2: "$60-200k",
+        first_week_steps: [
+          "Domain + waitlist page",
+          "Test the onboarding interview on yourself — see how it handles your actual lifting goals",
+          "Post 5 short videos showing 'Noom yelling at you' vs 'Shift asking how you feel'",
+          "Reach out to 10 Hilo gym communities or fitness creators with bilingual following"
+        ],
+        why_fit: "You said you lift, hike, and watch UFC for fun — you're already an active 20-year-old who hates the corporate-fitness vibe. Shift sells to people exactly like you, which means your TikToks are recruiting from your own friend group."
+      },
+      {
+        title: "InterviewBot — AI Mock Interview Coach",
+        type: "collab",
+        rating: 8,
+        pitch: "Realistic voice-agent that conducts behavioral, technical, and case interviews. Records, scores, gives targeted feedback. Like a $200/hr coach for $19/mo.",
+        time_commitment: "15 hrs/wk (you) + 8 hrs/wk (partner)",
+        startup_capital: "$200",
+        year_1: "$8-25k",
+        year_2: "$80-250k",
+        first_week_steps: [
+          "Your partner configures one Vapi assistant — your job is testing it",
+          "Have 5 of your law-school classmates do mock interviews (good content)",
+          "Post a TikTok of yourself bombing a mock interview — vulnerability gets shares",
+          "Email 3 community college career centers in Hawaii offering free 60-day pilots"
+        ],
+        why_fit: "You're studying law — moot court IS structured interview practice. You also said you're good at talking to people. The customer-facing role here matches your strengths while your partner handles the voice-agent build."
+      },
+      {
+        title: "NetworkBot — LinkedIn Outreach Drafter",
+        type: "collab",
+        rating: 7,
+        pitch: "AI drafts cold outreach for college students trying to land informational interviews. Reach 100 alumni without writing 100 messages.",
+        time_commitment: "10 hrs/wk (you) + 5 hrs/wk (partner)",
+        startup_capital: "$100",
+        year_1: "$5-20k",
+        year_2: "$50-150k",
+        first_week_steps: [
+          "Build the drafter, test it on real outreach to 5 Filipino lawyers in Hawaii",
+          "If response rate > 30%, post the receipts on TikTok ('AI got me 4 alumni meetings in a week')",
+          "Build a one-page site with screenshots of message → response",
+          "DM 50 prelaw students at UH Manoa with a free trial"
+        ],
+        why_fit: "You said you hate cold-calling strangers — this product literally exists because everyone hates cold-messaging strangers. Your law-class context gives you a credible niche to launch in: prelaw students reaching out to lawyers."
+      },
+      {
+        title: "ScholarshipPilot — AI Scholarship Auto-Apply",
+        type: "collab",
+        rating: 7,
+        pitch: "Match users to scholarships and draft the essays. Apply to 100+ scholarships without writing 100 essays. $10/mo + 5% of awards.",
+        time_commitment: "12 hrs/wk (you) + 8 hrs/wk (partner)",
+        startup_capital: "$100",
+        year_1: "$5-20k",
+        year_2: "$100-300k",
+        first_week_steps: [
+          "Curate 25 active scholarships specifically for Filipino-American students or Hawaii residents",
+          "Build the matcher, test on yourself — do you actually qualify?",
+          "Post in Filipino-American FB groups: 'building this for kids like us'",
+          "Apply to 3 yourself this week as a stress test"
+        ],
+        why_fit: "You're 20, broke, working retail to pay for college — you're the literal target user. Your accounting class helps with financial-aid eligibility logic, and the Filipino-American niche is unfair distribution your competitors can't replicate."
+      },
+      {
+        title: "Filipino Paperwork Concierge (Big Island)",
+        type: "solo",
+        rating: 9,
+        pitch: "Help Filipino families with USCIS forms, traffic tickets, school enrollment, landlord disputes. AI fills the forms; you customer-face. $25-150/form.",
+        time_commitment: "5-10 hrs/wk",
+        startup_capital: "$0",
+        year_1: "$8-20k",
+        year_2: "$40-100k",
+        first_week_steps: [
+          "Post in 3 Big Island Filipino FB groups: 'I help families with paperwork — first form $25'",
+          "Tell your mom, your aunties, your church",
+          "Pick ONE form to start (USCIS I-130 family petitions are a clean wedge — high demand, clear process)",
+          "Charge $25 for the first 5 customers, raise to $75 after testimonials"
+        ],
+        why_fit: "Hawaii County is 24% Filipino — highest concentration of any U.S. county. You said you have a strong family/community network. Your law-class reading comprehension is enough for form-filling — you're not giving legal advice. This is the fastest path to your first $1k."
+      },
+      {
+        title: "Kupuna Digital Concierge",
+        type: "solo",
+        rating: 8,
+        pitch: "Help Filipino seniors with MyChart, IRS portals, scam detection, government forms. Screen-share remote, $40-60/hr.",
+        time_commitment: "4-8 hrs/wk",
+        startup_capital: "$0",
+        year_1: "$3-10k",
+        year_2: "$20-60k",
+        first_week_steps: [
+          "Tell your mom and three aunties what you're offering",
+          "Set up a Calendly with $50/hr 1-hour slots",
+          "Post in Filipino church bulletins",
+          "First customer is probably a relative — do it for free, capture a video testimonial"
+        ],
+        why_fit: "You said you have a strong family/community network — this IS the business that runs on that. Trust-driven, referral-driven, and the older generation pays in cash without negotiating."
+      },
+      {
+        title: "Big Island Vacation Rental AI Concierge",
+        type: "solo",
+        rating: 7,
+        pitch: "Set up AI guest-messaging for Kona/Hilo Airbnb hosts. They drown in repeat questions about WiFi/parking/check-in. $500 setup + $99/mo retainer.",
+        time_commitment: "8-12 hrs/wk",
+        startup_capital: "$200",
+        year_1: "$5-20k",
+        year_2: "$40-120k",
+        first_week_steps: [
+          "Build a demo bot for one Airbnb listing in a weekend",
+          "DM 20 Kona/Waikoloa STR hosts on Airbnb with a free 30-day pilot",
+          "Use the demo as portfolio — record a 60-sec walkthrough",
+          "Land one paying client at $500 + $99/mo before doing outreach #21"
+        ],
+        why_fit: "You're on Big Island, you're 20 and tech-native, and Hawaii's STR economy is huge. Your law-class brain handles Hawaii's STR regulatory landscape (which is messy — that's a real customer pain). No car needed, all done remote."
+      },
+      {
+        title: "Bookkeeping Cleanup",
+        type: "solo",
+        rating: 7,
+        pitch: "Etsy sellers, freelancers, and 1099 folks hate their books. You take their bank statements, AI categorizes, you review. $200-400 per cleanup or $100-300/mo retainer.",
+        time_commitment: "8-12 hrs/wk",
+        startup_capital: "$30 (QuickBooks)",
+        year_1: "$8-20k",
+        year_2: "$40-100k",
+        first_week_steps: [
+          "Post in r/Etsy and r/freelance with $200 intro rate",
+          "Reach out to 5 Hawaii small-business FB groups",
+          "Build a sample cleanup using fake data so you have a portfolio",
+          "Land 3 clients in 14 days"
+        ],
+        why_fit: "You're already in accounting class. This is literally your homework, billable. Boring but recession-proof, and 15 monthly retainers gets you to $4-5k MRR in year one without leaving home."
+      },
+      {
+        title: "College Essay Coaching for HS Seniors",
+        type: "solo",
+        rating: 7,
+        pitch: "Coach Filipino-American HS seniors through college admissions essays. AI brainstorms, you humanize. $75-200/essay, peak Aug-Nov.",
+        time_commitment: "6-10 hrs/wk (seasonal)",
+        startup_capital: "$0",
+        year_1: "$3-15k",
+        year_2: "$20-60k",
+        first_week_steps: [
+          "Tell your church and family group chats now (essay season starts in August)",
+          "Build a one-page service site with before/after essay samples",
+          "Charge $75 for the first 3 customers, $150 after testimonials",
+          "Get one customer's kid into UH Manoa or beyond → testimonial gold"
+        ],
+        why_fit: "You're in college now and you applied recently — you know what works. Filipino parents take admissions seriously, and the cultural trust around 'this is the kid who's helping our kids do better' is huge. Seasonal, but Aug-Nov is also when retail jobs ramp down."
+      },
+      {
+        title: "Drop-Shipping (Shopify Store)",
+        type: "seed",
+        rating: 3,
+        pitch: "Sell other people's products on Shopify with TikTok ads. The version Iman Gadzhi sold you.",
+        time_commitment: "100+ hrs/wk first 6 months",
+        startup_capital: "$500-2000 (ads)",
+        year_1: "$0-2k (most likely a loss)",
+        year_2: "Depends on whether you survive the learning curve",
+        first_week_steps: [
+          "Don't",
+          "If you must — set a $500 ad budget cap and a 60-day timer",
+          "If you've burned $500 with no profit by day 60, stop",
+          "Take what you learned about ads to FinFree (#1) — same scalability, better odds"
+        ],
+        why_fit: "You said this is your seed idea. The instinct — wanting passive income that scales — is right. The vehicle is wrong. Drop-shipping was saturated by 2022; ad costs ate the margins; the people making real money now sell COURSES about it. The reason you wanted this lives in FinFree, where you actually have an unfair advantage you do NOT have on Shopify."
+      }
+    ];
+
+    const ratingClass = r => r >= 7 ? 'rating-high' : r >= 5 ? 'rating-mid' : 'rating-low';
+    const escapeHtml = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+    function renderIdea(idea, i) {
+      const stepsHtml = (idea.first_week_steps || []).map(s => `<li>${escapeHtml(s)}</li>`).join('');
+      const tagClass = idea.type === 'collab' ? 'tag-collab' : idea.type === 'seed' ? 'tag-seed' : 'tag-solo';
+      const tagLabel = idea.type === 'collab' ? 'Build with a partner' : idea.type === 'seed' ? 'Your seed idea' : 'Solo play';
+      const statusBadge = idea.status ? `<div class="idea-status-badge">${escapeHtml(idea.status)}</div>` : '';
+      return `
+        <div class="idea">
+          <div class="idea-tags"><span class="tag ${tagClass}">${tagLabel}</span></div>
+          ${statusBadge}
+          <div class="idea-header">
+            <div class="idea-title">${i}. ${escapeHtml(idea.title)}</div>
+            <div class="idea-rating ${ratingClass(idea.rating)}">${idea.rating}/10</div>
+          </div>
+          <div class="idea-pitch">${escapeHtml(idea.pitch)}</div>
+          <div class="idea-meta">
+            <div class="meta-item"><div class="meta-label">Time / week</div><div class="meta-value">${escapeHtml(idea.time_commitment)}</div></div>
+            <div class="meta-item"><div class="meta-label">Startup capital</div><div class="meta-value">${escapeHtml(idea.startup_capital)}</div></div>
+            <div class="meta-item"><div class="meta-label">Year 1 honest</div><div class="meta-value">${escapeHtml(idea.year_1)}</div></div>
+            <div class="meta-item"><div class="meta-label">Year 2 ceiling</div><div class="meta-value">${escapeHtml(idea.year_2)}</div></div>
+          </div>
+          <div class="idea-section">
+            <div class="idea-section-label">First-week moves</div>
+            <ol class="idea-steps">${stepsHtml}</ol>
+          </div>
+          <div class="idea-fit">${escapeHtml(idea.why_fit)}</div>
+        </div>
+      `;
+    }
+
+    const collab = SAMPLE_IDEAS.filter(i => i.type === 'collab');
+    const solo = SAMPLE_IDEAS.filter(i => i.type === 'solo');
+    const seed = SAMPLE_IDEAS.filter(i => i.type === 'seed');
+    let n = 0;
+    const collabHtml = collab.map(idea => renderIdea(idea, ++n)).join('');
+    const soloHtml = solo.map(idea => renderIdea(idea, ++n)).join('');
+    const seedHtml = seed.map(idea => renderIdea(idea, ++n)).join('');
+
+    document.getElementById('results').innerHTML = `
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Build with a partner (5)</div>
+          <div class="section-subtitle">Scalable products for the college / early-career market. SaaS, recurring revenue, $100k+ ARR ceiling possible.</div>
+        </div>
+        <div class="ideas">${collabHtml}</div>
+      </div>
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Run solo (5)</div>
+          <div class="section-subtitle">Services and local plays you can start this week with no co-founder.</div>
+        </div>
+        <div class="ideas">${soloHtml}</div>
+      </div>
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">The seed you brought (1)</div>
+          <div class="section-subtitle">Your idea, rated honestly against the alternatives above.</div>
+        </div>
+        <div class="ideas">${seedHtml}</div>
+      </div>
+    `;
+
+    const modal = document.getElementById('modal');
+    document.getElementById('snapBtn').addEventListener('click', () => modal.classList.add('show'));
+    document.getElementById('closeModal').addEventListener('click', () => modal.classList.remove('show'));
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('show'); });
+  </script>
+</body>
+</html>
