@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1320" />
+  <title>RentCheck Hawaii</title>
+  <style>
+    :root {
+      --bg: #0b1320;
+      --bg2: #0e1828;
+      --panel: #111e30;
+      --panel2: #16263c;
+      --line: rgba(255,255,255,.10);
+      --text: #e8eef7;
+      --muted: #9bacc4;
+      --soft: #c7d2e2;
+      --accent: #e2b04a;       /* warm legal-pad amber */
+      --accent2: #f2c66a;
+      --good: #79c89a;
+      --warn: #f0c674;
+      --danger: #ff7b7b;
+      --radius: 14px;
+      --shadow: 0 12px 36px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background:
+        radial-gradient(circle at top left, rgba(226,176,74,.08), transparent 38%),
+        radial-gradient(circle at top right, rgba(123,160,255,.06), transparent 35%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 60%, #070d16 100%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Inter, system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      width: min(760px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 22px 0 60px;
+    }
+
+    /* ---------- TOP NAV ---------- */
+    .top-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .top-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      transition: color .15s, border-color .15s, background .15s;
+    }
+    .top-nav a:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,.25);
+      background: rgba(255,255,255,.06);
+    }
+
+    /* ---------- HERO ---------- */
+    header.hero {
+      padding: 26px 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(17,30,48,.96), rgba(22,38,60,.78));
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    header.hero::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      top: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(226,176,74,.10);
+      filter: blur(4px);
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 5px 11px;
+      border: 1px solid rgba(226,176,74,.35);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(226,176,74,.08);
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+    h1.title {
+      margin: 0 0 10px;
+      font-size: 30px;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .headline {
+      font-size: 19px;
+      color: var(--soft);
+      margin: 0 0 12px;
+      line-height: 1.35;
+    }
+    .subhead {
+      font-size: 15px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ---------- INTERNAL NAV ---------- */
+    nav.internal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 22px 0 8px;
+    }
+    nav.internal a {
+      flex: 1 1 auto;
+      text-align: center;
+      color: var(--soft);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255,255,255,.025);
+      transition: color .15s, border-color .15s, background .15s;
+    }
+    nav.internal a:hover {
+      color: var(--text);
+      border-color: rgba(226,176,74,.45);
+      background: rgba(226,176,74,.06);
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section {
+      margin-top: 24px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    section h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+    }
+    section .lead {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+    section h3 {
+      margin: 16px 0 8px;
+      font-size: 15px;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+    }
+    section p {
+      color: var(--soft);
+      font-size: 15px;
+      margin: 8px 0;
+    }
+    section ul, section ol {
+      margin: 8px 0 8px 18px;
+      padding: 0;
+      color: var(--soft);
+      font-size: 15px;
+    }
+    section li {
+      margin: 5px 0;
+    }
+    .pull {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-left: 3px solid var(--accent);
+      background: rgba(226,176,74,.06);
+      color: var(--text);
+      font-size: 15px;
+      border-radius: 6px;
+    }
+
+    /* ---------- ISSUE CARDS ---------- */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel2);
+    }
+    .card .tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .card h3.card-title {
+      color: var(--text);
+      font-size: 17px;
+      margin: 0 0 10px;
+    }
+    .card .row {
+      margin-top: 10px;
+    }
+    .card .row-label {
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .card ul {
+      margin: 4px 0 0 16px;
+      font-size: 14px;
+    }
+    .card .calm {
+      margin-top: 6px;
+      padding: 10px 12px;
+      background: rgba(121,200,154,.07);
+      border: 1px solid rgba(121,200,154,.25);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+
+    /* ---------- SCRIPTS ---------- */
+    .script {
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel2);
+    }
+    .script .script-title {
+      font-size: 14px;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+    .script pre {
+      margin: 0;
+      padding: 12px 14px;
+      background: #0a1424;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13.5px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    /* ---------- EVIDENCE TABLE ---------- */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      color: var(--soft);
+      vertical-align: top;
+    }
+    th {
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    tr:last-child td { border-bottom: none; }
+
+    /* ---------- SAFETY ---------- */
+    .safety {
+      border-left: 3px solid var(--danger);
+      background: rgba(255,123,123,.06);
+    }
+    .safety h2 { color: #ffb3b3; }
+    .blunt {
+      margin-top: 14px;
+      font-size: 16px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ---------- 7-DAY PLAN ---------- */
+    .days {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .day {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel2);
+    }
+    .day .day-label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .day .day-body {
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    /* ---------- DASH ---------- */
+    .dash {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .dash-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel2);
+      font-size: 14px;
+    }
+    .dash-row .k { color: var(--muted); }
+    .dash-row .v { color: var(--text); text-align: right; }
+
+    /* ---------- FOOTER ---------- */
+    footer.disclaimer {
+      margin-top: 30px;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(0,0,0,.25);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    @media (min-width: 640px) {
+      .cards { grid-template-columns: 1fr 1fr; }
+      .days  { grid-template-columns: 1fr 1fr; }
+      h1.title { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+
+    <nav class="top-nav">
+      <a href="../">← GutCheck</a>
+      <a href="../idea-oven/">Vince Idea Oven</a>
+      <a href="../brian-idea-oven/">Brian Idea Oven</a>
+    </nav>
+
+    <header class="hero">
+      <div class="eyebrow">Hawaii · checklist tool · not legal advice</div>
+      <h1 class="title">RentCheck Hawaii</h1>
+      <p class="headline">Turn your renter problem into a paper trail.</p>
+      <p class="subhead">
+        A plain-English checklist tool for Hawaii renters dealing with deposits, repairs, notices, neighbor issues, lease confusion, and move-out drama. Not legal advice. Just the next sane step.
+      </p>
+    </header>
+
+    <nav class="internal" aria-label="On this page">
+      <a href="#start">Start Here</a>
+      <a href="#flows">Issue Flows</a>
+      <a href="#scripts">Scripts</a>
+      <a href="#evidence">Evidence Log</a>
+      <a href="#safety">Safety Rules</a>
+      <a href="#plan">7-Day Build Plan</a>
+      <a href="#dash">Results Dash</a>
+    </nav>
+
+    <!-- ============= START HERE ============= -->
+    <section id="start">
+      <h2>Start Here</h2>
+      <p class="lead">Five steps. In order. Don't skip.</p>
+      <ol>
+        <li><strong>Choose your renter issue.</strong> Pick the closest one in Issue Flows below. If it spans two, pick the most urgent.</li>
+        <li><strong>Save the right evidence.</strong> Photos, videos, dated texts, emails, receipts, lease pages, notices. Original files, not screenshots of screenshots.</li>
+        <li><strong>Build a timeline.</strong> Plain dates and what happened. Use the Evidence Log template. One row per event.</li>
+        <li><strong>Draft a calm message.</strong> Use a Script. Stick to facts and a clear ask. No threats, no name-calling.</li>
+        <li><strong>Know when to escalate.</strong> Legal Aid Society of Hawaii, a mediation center, the court self-help center, or a private attorney — for eviction, lockout, unsafe housing, large deposit disputes, discrimination, violence, or any court papers.</li>
+      </ol>
+    </section>
+
+    <!-- ============= ISSUE FLOWS ============= -->
+    <section id="flows">
+      <h2>Issue Flows</h2>
+      <p class="lead">Pick the closest one. Each card tells you what to save, what to ask, what to watch for, and one calm message to start with.</p>
+
+      <div class="cards">
+
+        <!-- A. Security Deposit -->
+        <div class="card">
+          <span class="tag">A</span>
+          <h3 class="card-title">Security Deposit</h3>
+          <div class="row">
+            <div class="row-label">What to save</div>
+            <ul>
+              <li>Signed lease and any addenda</li>
+              <li>Move-in and move-out photos / videos, timestamped</li>
+              <li>Receipts for cleaning, repairs, or pro services</li>
+              <li>Forwarding address you gave the landlord (in writing)</li>
+              <li>Any itemized deposit statement they sent</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">What to ask</div>
+            <ul>
+              <li>When did I move out and when did I give a forwarding address?</li>
+              <li>Did I get an itemized list of deductions in writing?</li>
+              <li>Are deductions for actual damage or for normal wear and tear?</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">Red flags</div>
+            <ul>
+              <li>No itemized statement at all</li>
+              <li>Charges for paint, carpet, "general cleaning" with no detail</li>
+              <li>Vague phone promises and no email reply</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">First calm message</div>
+            <div class="calm">Hi [Landlord], following up on the security deposit for [address]. I moved out on [date] and provided my forwarding address on [date]. Can you send the itemized statement and the deposit balance? Thanks.</div>
+          </div>
+        </div>
+
+        <!-- B. Repairs / Unsafe Housing -->
+        <div class="card">
+          <span class="tag">B</span>
+          <h3 class="card-title">Repairs / Unsafe Housing</h3>
+          <div class="row">
+            <div class="row-label">What to save</div>
+            <ul>
+              <li>Photos and videos of the problem, with dates</li>
+              <li>Every repair request you've sent (text, email, portal)</li>
+              <li>Any reply or lack of reply</li>
+              <li>Receipts if you paid to fix anything yourself</li>
+              <li>Medical notes if anyone got sick or hurt</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">What to ask</div>
+            <ul>
+              <li>Is this a habitability issue (no water, no power, mold, leaks, no lock, pests)?</li>
+              <li>Did I report it in writing? When?</li>
+              <li>Has the landlord responded with a date?</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">Red flags</div>
+            <ul>
+              <li>"I'll send someone soon" repeated for weeks</li>
+              <li>Retaliation talk after you complained</li>
+              <li>Being told to fix it yourself with no written agreement</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">First calm message</div>
+            <div class="calm">Hi [Landlord], writing to document a repair issue at [address]. On [date] I noticed [problem]. Photos attached. Please let me know when this can be fixed. Thanks.</div>
+          </div>
+        </div>
+
+        <!-- C. Eviction / Notice -->
+        <div class="card">
+          <span class="tag">C</span>
+          <h3 class="card-title">Eviction / Notice</h3>
+          <div class="row">
+            <div class="row-label">What to save</div>
+            <ul>
+              <li>Every notice — photograph the paper and the envelope</li>
+              <li>The date and the way it was delivered (taped to door, handed to you, mailed)</li>
+              <li>Any messages about why</li>
+              <li>Receipts and proof of any rent you paid</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">What to ask</div>
+            <ul>
+              <li>What kind of notice is this and what is the deadline on it?</li>
+              <li>Is this a notice to cure (fix something) or a notice to quit (leave)?</li>
+              <li>Have I been served court papers? Is there a hearing date?</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">Red flags</div>
+            <ul>
+              <li>Landlord changing the locks, removing your stuff, or shutting off utilities — that is a lockout, not an eviction</li>
+              <li>Verbal threats only, no paperwork — still document them</li>
+              <li>Court papers you haven't opened yet</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">First calm message</div>
+            <div class="calm">Hi [Landlord], I received a notice dated [date] regarding [reason]. I'm reviewing it. Can you confirm in writing what you need from me and by when? Thanks.</div>
+          </div>
+        </div>
+
+        <!-- D. Neighbor / Harassment -->
+        <div class="card">
+          <span class="tag">D</span>
+          <h3 class="card-title">Neighbor / Harassment</h3>
+          <div class="row">
+            <div class="row-label">What to save</div>
+            <ul>
+              <li>Dates, times, and what happened — short factual notes</li>
+              <li>Audio or video only where it's legal and safe to record</li>
+              <li>Texts, voicemails, notes, or DMs from the other party</li>
+              <li>Police report numbers if you called</li>
+              <li>Names and contact info of any witnesses</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">What to ask</div>
+            <ul>
+              <li>Is this a pattern or a single incident?</li>
+              <li>Did I tell the landlord or building manager in writing?</li>
+              <li>Is anyone in physical danger right now?</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">Red flags</div>
+            <ul>
+              <li>Threats of violence, stalking, or weapons — call 911</li>
+              <li>Targeting based on race, gender, disability, family, or country of origin — that's a discrimination issue</li>
+              <li>Landlord refusing to acknowledge written complaints</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">First calm message</div>
+            <div class="calm">Hi [Landlord/Manager], documenting an issue with the unit at [neighbor address]. On [date / time] [what happened]. I'm asking that this be addressed and that I get a written response. Thanks.</div>
+          </div>
+        </div>
+
+        <!-- E. Lease Confusion -->
+        <div class="card">
+          <span class="tag">E</span>
+          <h3 class="card-title">Lease Confusion</h3>
+          <div class="row">
+            <div class="row-label">What to save</div>
+            <ul>
+              <li>The full signed lease — every page</li>
+              <li>Any addenda, house rules, HOA rules, pet agreements</li>
+              <li>Texts or emails where the landlord said something different than the lease</li>
+              <li>Receipts for any fees you've paid</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">What to ask</div>
+            <ul>
+              <li>What exactly does the lease say about this?</li>
+              <li>Did the landlord verbally agree to something different?</li>
+              <li>Is there a section number I can quote when I ask?</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">Red flags</div>
+            <ul>
+              <li>Verbal "don't worry about that clause"</li>
+              <li>Fees not listed anywhere in the lease</li>
+              <li>Rules added after move-in with no signed addendum</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">First calm message</div>
+            <div class="calm">Hi [Landlord], I want to make sure I understand the lease correctly. Section [#] says [quote]. Can you confirm how that applies to [situation]? Thanks.</div>
+          </div>
+        </div>
+
+        <!-- F. Move-Out Checklist -->
+        <div class="card">
+          <span class="tag">F</span>
+          <h3 class="card-title">Move-Out Checklist</h3>
+          <div class="row">
+            <div class="row-label">What to save</div>
+            <ul>
+              <li>Written notice you sent and the date you sent it</li>
+              <li>Move-out photos and videos of every room, before keys are handed back</li>
+              <li>Final utility readings and any cleaning receipts</li>
+              <li>Forwarding address you gave in writing</li>
+              <li>Key return method (who, when, how)</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">What to ask</div>
+            <ul>
+              <li>Did I give the required notice in the format the lease asks for?</li>
+              <li>Did I do a walk-through with the landlord?</li>
+              <li>Did I get any walk-through findings in writing?</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">Red flags</div>
+            <ul>
+              <li>Landlord refusing to do a walk-through</li>
+              <li>"We'll figure out the deposit later"</li>
+              <li>No written confirmation that keys were returned</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="row-label">First calm message</div>
+            <div class="calm">Hi [Landlord], confirming move-out from [address] on [date]. Keys returned via [method]. Forwarding address: [address]. Please send the itemized deposit statement when ready. Thanks.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============= SCRIPTS ============= -->
+    <section id="scripts">
+      <h2>Scripts</h2>
+      <p class="lead">Copy, paste, fill in the brackets. Keep it factual. Don't add insults. Don't add threats.</p>
+
+      <div class="script">
+        <div class="script-title">1. Repair request</div>
+<pre>Hi [Landlord],
+
+I'm writing to document a repair issue at [address, unit #].
+
+On [date], I noticed [describe the problem in one or two plain sentences].
+Photos and video are attached.
+
+Please let me know:
+- when this can be inspected
+- when it will be repaired
+- who will be coming and roughly what time
+
+I'd like to keep this in writing so we both have a record. Thanks.
+
+[Your name]
+[Phone]</pre>
+      </div>
+
+      <div class="script">
+        <div class="script-title">2. Security deposit follow-up</div>
+<pre>Hi [Landlord],
+
+Following up on the security deposit for [address, unit #].
+
+- Move-out date: [date]
+- Keys returned: [date and method]
+- Forwarding address provided on: [date]
+
+I haven't received the itemized statement yet. Could you send:
+- the itemized list of any deductions
+- the remaining deposit balance
+- the date it will be sent or deposited
+
+Happy to clarify anything on my end. Thanks.
+
+[Your name]</pre>
+      </div>
+
+      <div class="script">
+        <div class="script-title">3. Neighbor / harassment documentation message</div>
+<pre>Hi [Landlord / Property Manager],
+
+I want to document something happening at [building / unit].
+
+- Date and time: [date, time]
+- What happened: [one or two factual sentences, no opinion words]
+- Witnesses or recordings: [yes/no, names if any]
+- Police involvement: [yes/no, report # if any]
+
+I'm asking that this be addressed and that I get a written response with next steps.
+I'll continue to keep notes if anything else happens.
+
+Thanks,
+[Your name]
+[Unit #]</pre>
+      </div>
+
+      <div class="script">
+        <div class="script-title">4. Lease clarification question</div>
+<pre>Hi [Landlord],
+
+I want to make sure I'm reading the lease correctly before I [action you're considering].
+
+Section [#] / paragraph [#] says:
+"[Quote the line from the lease]"
+
+My question:
+- Does this mean [your plain-English understanding]?
+- If not, can you explain how it applies to [your situation]?
+
+I'd like the answer in writing so I don't act on a misunderstanding. Thanks.
+
+[Your name]</pre>
+      </div>
+    </section>
+
+    <!-- ============= EVIDENCE LOG ============= -->
+    <section id="evidence">
+      <h2>Evidence Log</h2>
+      <p class="lead">A blank template. One row per event. Keep your own copy in a notes app, Google Doc, or paper notebook. Don't store it only on your landlord's portal.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>What happened</th>
+              <th>Who</th>
+              <th>Photos / video?</th>
+              <th>Texts / emails saved?</th>
+              <th>Witnesses?</th>
+              <th>Next action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>YYYY-MM-DD</td>
+              <td>HH:MM</td>
+              <td>Plain facts, one or two sentences.</td>
+              <td>Names and roles.</td>
+              <td>Y / N — where stored</td>
+              <td>Y / N — where stored</td>
+              <td>Y / N — names and contact</td>
+              <td>What you'll do next, by when.</td>
+            </tr>
+            <tr>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            </tr>
+            <tr>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============= SAFETY RULES ============= -->
+    <section id="safety" class="safety">
+      <h2>Safety Rules</h2>
+      <p class="lead">Read this section before sending anything.</p>
+      <ul>
+        <li><strong>RentCheck is not legal advice.</strong> It's a checklist tool.</li>
+        <li><strong>Do not ignore court papers or eviction notices.</strong> Deadlines are real. Missing them can cost you the case.</li>
+        <li><strong>Do not threaten your landlord.</strong> No threats of violence, no threats to damage the unit, no threats to "ruin" anyone online.</li>
+        <li><strong>Do not make claims you cannot document.</strong> Stick to what you can prove with photos, video, dated messages, or witnesses.</li>
+        <li><strong>Save written records.</strong> Use text and email. If something is said on the phone or in person, follow up in writing: "Just confirming what we discussed today —"</li>
+        <li><strong>Escalate</strong> to Legal Aid Society of Hawaii, a mediation center, the court self-help center, or a private attorney for: eviction, lockout, unsafe housing, large deposit disputes, discrimination, violence, or any court papers.</li>
+      </ul>
+      <div class="blunt">"RentCheck helps you stop panic-texting and start documenting."</div>
+    </section>
+
+    <!-- ============= 7-DAY BUILD PLAN ============= -->
+    <section id="plan">
+      <h2>7-Day Build Plan</h2>
+      <p class="lead">Build the tool one day at a time. Ship rough. Improve later.</p>
+      <div class="days">
+        <div class="day"><div class="day-label">Day 1</div><div class="day-body">Build static page.</div></div>
+        <div class="day"><div class="day-label">Day 2</div><div class="day-body">Add six issue flows.</div></div>
+        <div class="day"><div class="day-label">Day 3</div><div class="day-body">Add scripts and evidence log.</div></div>
+        <div class="day"><div class="day-label">Day 4</div><div class="day-body">Add official Hawaii resource links placeholder section.</div></div>
+        <div class="day"><div class="day-label">Day 5</div><div class="day-body">QA mobile and links.</div></div>
+        <div class="day"><div class="day-label">Day 6</div><div class="day-body">Show to 5 renters / friends for feedback.</div></div>
+        <div class="day"><div class="day-label">Day 7</div><div class="day-body">Update Results Dash.</div></div>
+      </div>
+    </section>
+
+    <!-- ============= RESULTS DASH ============= -->
+    <section id="dash">
+      <h2>Results Dash</h2>
+      <p class="lead">Manual for now. Update the right column as you go.</p>
+      <div class="dash">
+        <div class="dash-row"><span class="k">Page live?</span><span class="v">—</span></div>
+        <div class="dash-row"><span class="k">Issue flows drafted</span><span class="v">— / 6</span></div>
+        <div class="dash-row"><span class="k">Scripts drafted</span><span class="v">— / 4</span></div>
+        <div class="dash-row"><span class="k">Official resources added</span><span class="v">—</span></div>
+        <div class="dash-row"><span class="k">People shown</span><span class="v">— / 5</span></div>
+        <div class="dash-row"><span class="k">Confusing points</span><span class="v">—</span></div>
+        <div class="dash-row"><span class="k">Risky wording found</span><span class="v">—</span></div>
+        <div class="dash-row"><span class="k">Next issue flow</span><span class="v">—</span></div>
+        <div class="dash-row"><span class="k">Kill switch status</span><span class="v">live / paused / killed</span></div>
+      </div>
+    </section>
+
+    <footer class="disclaimer">
+      RentCheck Hawaii is an organization and checklist tool. It does not provide legal advice and does not replace an attorney, court, official agency, mediation center, or tenant-rights organization.
+    </footer>
+
+  </main>
+</body>
+</html>
